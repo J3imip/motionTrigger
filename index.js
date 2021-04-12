@@ -1,5 +1,5 @@
 try {
-    const express = require('express');
+    require('express');
     runStart();
 } catch(err) {
     firstStart();
@@ -7,6 +7,7 @@ try {
 
 async function firstStart() {
     const fs = require("fs");
+    const path = require("path");
     const { exec } = require("child_process");
 
     console.log("Вы запустили сервер в первый раз. Подождите немного, пока он настроится.");
@@ -15,7 +16,7 @@ async function firstStart() {
             return console.warn(err);
         }
         fs.writeFile("server.bat", `::door detect node.js app by @Jeimip
-cd C:\\Users\\bogda\\WebstormProjects\\jeimipAPI
+cd ${path.resolve()}
 pm2 start index.js`,
             err => {
                 if (err) {

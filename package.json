@@ -10,9 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
-    "mplayer": "^2.1.0",
-    "node-windows": "^1.0.0-beta.5",
-    "nodemon": "^2.0.7",
     "robotjs": "^0.6.0"
   }
 }
