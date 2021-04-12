@@ -1,5 +1,5 @@
 try {
-    const express = require('express');
+    require('express');
     runStart();
 } catch(err) {
     firstStart();
