@@ -3,7 +3,7 @@
 ### Зависимости - [node.js](https://nodejs.org/ru/download/) ###
 ##### 1) Устанавливаем node.js по ссылке выше ######
 ##### 2) Скачиваем [motionTrigger server](https://github.com/1JeimiP1/motionTrigger/releases/tag/v1.0.1) на компьютер и разархивируем ######
-##### 3) Открываем `firstRun.bat` и дожидаемся загрузки ######
+##### 3) Открываем `firstRun.bat` и дожидаемся загрузки, после чего закрываем ######
 ##### 4) Открываем `start.bat` (Можно добавить `start.bat` в автозагрузку) ######
 ##### 5) Открываем `data.txt` и копируем IP ######
 ##### 6) Устанавливаем [Android apk app](https://github.com/1JeimiP1/motionTrigger/releases/tag/v1.0.0) ######
