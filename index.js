@@ -11,9 +11,15 @@ async function firstStart() {
     const { exec } = require("child_process");
 
     console.log("Вы запустили сервер в первый раз. Подождите немного, пока он настроится.");
-    exec("npm i", (err) => {
+    exec("npm i", (err, stdout, stderr) => {
         if (err) {
-            return console.warn(err);
+            console.log(err);
+        }
+        if (stdout) {
+            console.log(stdout);
+        }
+        if (stderr) {
+            console.log(stderr);
         }
         fs.writeFile("server.bat", `::door detect node.js app by @Jeimip
 cd ${path.resolve()}
@@ -24,7 +30,16 @@ pm2 start index.js`,
                 }
             }
         );
-        exec("npm install pm2 -g", () => {
+        exec("npm install pm2 -g", (err, stdout, stderr) => {
+            if (err) {
+                console.log(err);
+            }
+            if (stdout) {
+                console.log(stdout);
+            }
+            if (stderr) {
+                console.log(stderr);
+            }
             console.log("Сервер настроен!");
             runStart();
         });
