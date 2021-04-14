@@ -15,20 +15,38 @@ function playSound(file) {
     return true;
 }
 
-router.get("/opened", async (req, res) => {
-    playSound("ventOpened.mp3");
+async function answer(res, req, text) {
+    if (req.query.play === "true") {
+        if (text === "opened") { playSound("ventOpened.mp3"); }
+        if (text === "closed") { playSound("motionTrigger.mp3"); }
+    }
 
-    robot.keyTap('d', ["command"]); //сворачивание приложений
-    robot.keyTap('c', ["alt"]); //выключение звука в discord
-    return res.status(200).json("Apps collapsed successfully");
+    if (req.query.expand === "true") {
+        robot.keyTap('d', ["command"]); //сворачивание приложений
+    }
+
+    if (req.query.key) {
+        robot.keyTap(req.query.key, [req.query.opt]); //проигрываем бинд с приложения
+    }
+
+    return res.status(200).json(text);
+}
+
+router.get("/opened/:sound", (req, res)=> answer(res, req, "opened"));
+
+router.get("/closed/:sound", (req, res)=>answer(res, req, "closed"));
+
+router.get("/stop", async (req, res) => {
+    exec("forever stop 0", (err) => {
+        if (err) {
+            return res.status(404).json(err);
+        }
+    });
+    return res.status(200).json("Server stopped");
 })
 
-router.get("/closed", async (req, res) => {
-    playSound("motionTrigger.mp3");
-    robot.keyTap('d', ["command"]);
-    robot.keyTap('c', ["alt"]);
-
-    return res.status(200).json("Apps expanded successfully");
+router.get("/test", async (req, res) => {
+    return res.status(200).json("Server works!");
 })
 
 module.exports = router;

@@ -23,14 +23,14 @@ async function firstStart() {
         }
         fs.writeFile("server.bat", `::door detect node.js app by @Jeimip
 cd ${path.resolve()}
-pm2 start index.js`,
+forever start --uid nodeServer --append .\\index.js`,
             err => {
                 if (err) {
                     return console.log(err)
                 }
             }
         );
-        exec("npm install pm2 -g", (err, stdout, stderr) => {
+        exec("npm install forever -g", (err, stdout, stderr) => {
             if (err) {
                 console.log(err);
             }
@@ -41,7 +41,7 @@ pm2 start index.js`,
                 console.log(stderr);
             }
             console.log("Сервер настроен!");
-            runStart();
+            process.exit(22);
         });
     })
 }
