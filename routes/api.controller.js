@@ -26,6 +26,8 @@ async function answer(res, req, text) {
     }
 
     if (req.query.key) {
+        if (req.query.opt === "win") {req.query.opt = "command"}
+        if (req.query.opt === "ctrl") {req.query.opt = "control"}
         robot.keyTap(req.query.key, [req.query.opt]); //проигрываем бинд с приложения
     }
 
