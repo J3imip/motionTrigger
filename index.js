@@ -71,7 +71,7 @@ async function runStart() {
 
     for (const name of Object.keys(nets)) {
         for (const net of nets[name]) {
-            if (net.address.includes("192.168.0")) { //получаем локальный IP устройства
+            if (net.address.includes("192.168")) { //получаем локальный IP устройства
                 bindIp = net.address;
             }
         }
